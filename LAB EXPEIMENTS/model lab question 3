@@ -1,0 +1,20 @@
+import cv2
+import matplotlib.pyplot as plt
+
+img = cv2.imread(list(uploaded.keys())[0])
+
+r90 = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
+r180 = cv2.rotate(img, cv2.ROTATE_180)
+r270 = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
+
+images = [img, r90, r180, r270]
+titles = ["Original", "90 Degree", "180 Degree", "270 Degree"]
+
+for i in range(4):
+    plt.subplot(2, 2, i+1)
+    plt.imshow(cv2.cvtColor(images[i], cv2.COLOR_BGR2RGB))
+    plt.title(titles[i])
+    plt.axis("off")
+
+plt.tight_layout()
+plt.show()
