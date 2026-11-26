@@ -1,0 +1,28 @@
+import cv2
+import matplotlib.pyplot as plt
+
+img = cv2.imread(list(uploaded.keys())[0], 0)
+
+x = cv2.Sobel(img, cv2.CV_8U, 1, 0, ksize=3)
+y = cv2.Sobel(img, cv2.CV_8U, 0, 1, ksize=3)
+
+edges = cv2.add(x, y)
+
+plt.subplot(2, 2, 1)
+plt.imshow(img, cmap='gray')
+plt.title("Original")
+
+plt.subplot(2, 2, 2)
+plt.imshow(x, cmap='gray')
+plt.title("Sobel X")
+
+plt.subplot(2, 2, 3)
+plt.imshow(y, cmap='gray')
+plt.title("Sobel Y")
+
+plt.subplot(2, 2, 4)
+plt.imshow(edges, cmap='gray')
+plt.title("Final Edges")
+
+plt.tight_layout()
+plt.show()
